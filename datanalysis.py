@@ -31,3 +31,36 @@ else:
 
 # now mode of scan_height column
 #print(df["scan_height"].mode())
+# mode method 
+
+    position = 0
+    largest = 0
+    l=df["scan_height"].count()
+    while position <= l:
+        count = df["scan_height"].value_counts(df["scan_height"][position])
+        if  count > largest:
+            largest = count
+            value = df["scan_height"][position]
+        position=position +1 
+    print (value)
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
