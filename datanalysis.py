@@ -48,10 +48,10 @@ def mode(database,columnname):
             freq=dict1[i]
             mode=i
     list1.append(mode)
-    print(mode)
     for i in dict1 :
         if dict1[i]==freq and mode!=i:
             list1.append(i)
+    list1.sort()
         
             
     print(list1)
