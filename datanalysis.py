@@ -4,46 +4,63 @@ Created on Mon Apr  4 23:22:25 2022
 
 @author: Aryan Chadha
 """
+sum=0
+count=0
+val=0
 import pandas as pd
 df = pd.read_csv(r'C:\Users\Aryan Chadha\Downloads\final_df.csv')
-print(df.tail())
-# bhaiya here I found the mean of one of the column 
-print(df["manual_height"].mean()) 
-# here I used total sum / total no of values 
-mean=(df["manual_height"].sum())/(df["manual_height"].count())
-print(mean)
-# here I found the median of the manual weight column 
-#print(df["manual_weight"].median())
-# median :
-x=df["manual_weight"].sort_values()
-a=df["manual_weight"].count()
-print(a)
 
-if a //2 ==0:
-    first= x[a//2]
-    second=x[a//2-1]
-    median=(first+second)/2
-    print(median)
-else:
-    median= x[a//2]
-    print(median)
-    
+def mean (database,columnname):
+    count=0
+    sum=0
+    for i in range(len(database)):
+        sum=sum+ database.loc[i,columnname]
+    for i in range(len(database)):
+        count=count+1
+    print(sum/count)
+def median (database,columnname):
+    val=0
+    for i in range(len(database)):
+        val=val+1
+    database[columnname].sort_values()
 
-# now mode of scan_height column
-#print(df["scan_height"].mode())
-# mode method 
+    if count //2 ==0:
+        first= database.loc[val//2-1,columnname]
+        second=database.loc[val//2, columnname]
+        median=(first+second)/2
+        print(median)
+    else:
+        median= database.loc[val//2,columnname]
+        print(median)
+median (df,"scan_height")
 
-    position = 0
-    largest = 0
-    l=df["scan_height"].count()
-    while position <= l:
-        count = df["scan_height"].value_counts(df["scan_height"][position])
-        if  count > largest:
-            largest = count
-            value = df["scan_height"][position]
-        position=position +1 
-    print (value)
+def mode(database,columnname):
+    dict1={}
+    list1=[]
+    for i in database[columnname]:
+        if i in dict1:
+            dict1[i]=dict1[i]+1
+        else:
+            dict1[i]=1
+    freq=0
+    for i in dict1:
+        if dict1[i]> freq :
+            freq=dict1[i]
+            mode=i
+    list1.append(mode)
+    print(mode)
+    for i in dict1 :
+        if dict1[i]==freq and mode!=i:
+            list1.append(i)
         
+            
+    print(list1)
+mode (df,"scan_height")
+print(df["scan_height"].mode())
+        
+
+
+
 
 
 
