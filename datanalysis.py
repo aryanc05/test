@@ -24,7 +24,7 @@ def median (database,columnname):
         val=val+1
     database[columnname].sort_values()
 
-    if count //2 ==0:
+    if val //2 ==0:
         first= database.loc[val//2-1,columnname]
         second=database.loc[val//2, columnname]
         median=(first+second)/2
