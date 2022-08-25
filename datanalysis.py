@@ -22,7 +22,8 @@ def median (database,columnname):
     val=0
     for i in range(len(database)):
         val=val+1
-    database[columnname].sort_values()
+    database.sort_values(columnname, axis = 0, ascending = True,
+                 inplace = True, )
 
     if val //2 ==0:
         first= database.loc[val//2-1,columnname]
